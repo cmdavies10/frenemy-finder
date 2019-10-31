@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Friend Finder Survery</title>
+    <title>Frenemy Finder Survery</title>
 
     <!-- Latest compiled and minified CSS & JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -33,8 +33,9 @@
         <hr>
 
         <h5>Question #1</h5>
-        <h6>Your mind is always buzzing with unexplored ideas and plans.</h6>
+        <h6>You prefer wearing a mask</h6>
         <select id="q1" class="chosen-select">
+            <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -43,8 +44,9 @@
         </select>
 
         <h5>Question #2</h5>
-        <h6>Your mind is always buzzing with unexplored ideas and plans.</h6>
+        <h6>You are scared of crocodiles</h6>
         <select id="q2" class="chosen-select">
+            <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -53,8 +55,9 @@
         </select>
 
         <h5>Question #3</h5>
-        <h6>Your mind is always buzzing with unexplored ideas and plans.</h6>
+        <h6>You hate clocks.</h6>
         <select id="q3" class="chosen-select">
+            <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -63,8 +66,9 @@
         </select>
 
         <h5>Question #4</h5>
-        <h6>Your mind is always buzzing with unexplored ideas and plans.</h6>
+        <h6>Your favorite holiday is Halloween.</h6>
         <select id="q4" class="chosen-select">
+            <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -75,6 +79,7 @@
         <h5>Question #5</h5>
         <h6>Your mind is always buzzing with unexplored ideas and plans.</h6>
         <select id="q5" class="chosen-select">
+            <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -85,6 +90,7 @@
         <h5>Question #6</h5>
         <h6>Your mind is always buzzing with unexplored ideas and plans.</h6>
         <select id="q6" class="chosen-select">
+            <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -95,6 +101,7 @@
         <h5>Question #7</h5>
         <h6>Your mind is always buzzing with unexplored ideas and plans.</h6>
         <select id="q7" class="chosen-select">
+            <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -105,6 +112,7 @@
         <h5>Question #8</h5>
         <h6>Your mind is always buzzing with unexplored ideas and plans.</h6>
         <select id="q8" class="chosen-select">
+            <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -115,6 +123,7 @@
         <h5>Question #9</h5>
         <h6>Your mind is always buzzing with unexplored ideas and plans.</h6>
         <select id="q9" class="chosen-select">
+            <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -125,6 +134,7 @@
         <h5>Question #10</h5>
         <h6>Your mind is always buzzing with unexplored ideas and plans.</h6>
         <select id="q10" class="chosen-select">
+            <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -134,21 +144,37 @@
         <br>
         <br>
 
-        <button type="submit" class="btn btn-md btn-primary" id="submit">Submit</button>
+        <button type="submit" class="btn btn-md btn-primary" id="submit"> Submit</button>
         <hr>
 
+        <!-- footer -->
         <footer class="footer">
             <div class="container">
-                <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/cmdavies10/friend-finder">GitHub
+                <p><a href="/api/frenemies">API Frenemy List</a> | <a href="https://github.com/cmdavies10/friend-finder">GitHub
                 Repo</a></p>
             </div>
         </footer>
+    </div>
 
-
+    <!-- modal -->
+    <div id="results-modal" class="modal fade" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal"></button>
+                <h3 class="modal-title">Best Frenemy</h3>
+            </div>
+            <div class="modal-body">
+                <h4 id="match-name"></h4>
+                <img id="match-photo" src="" alt="best frenemy photo">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
 
     <script type="text/javascript">
-        //  take information from form
+        // capture user input
         $("#submit").on("click", function(event) {
             event.preventDefault();
 
@@ -159,20 +185,23 @@
                 $(".form-control").each(function() {
                     if ($(this).val() === "") {
                         valid = false;
-                        console.log("error")
+                        // alert("Error. Please fill out all questions.")
+                        console.log("Error. Forms not filled out.")
                     }
                 })
 
                 $(".chosen-select").each(function() {
                     if ($(this).val() === "") {
                         valid = false;
+                        // alert("Error. Please fill out all questions.")
+                        console.log("Error - Questions not filled out.")
                     }
                 })
 
                 return valid;
             };
 
-            // if form is validated, take in user input
+            // if form is validated, capture user input
             if (validateForm()) {
                 var userData = {
                     name: $("#name").val(),
@@ -191,13 +220,20 @@
                     ]
                 }
 
-                $.post("/api/friends", userData, function(data, status) {
+                $.post("/api/frenemies", userData, function(data, status) {
                     console.log("Data: " + data + "\nStatus: " + status);
+
+                    // update modal with result from AJAX post and display info
+                    $("#match-name").text(data.name);
+                    $("match-photo").attr("src", data.photo);
+
+                    // show modal with best friend
+                    $("#results-modal").modal("toggle")
                 });
 
+            } else {
+                alert("Error. Please fill out all fields.");
             };
-
-
         });
     </script>
 </body>

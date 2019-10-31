@@ -1,5 +1,5 @@
 var friends = [{
-        "name": "Ellie",
+        "name": "Captain Hook",
         "photo": "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
         "scores": [
             "5",
@@ -15,7 +15,7 @@ var friends = [{
         ]
     },
     {
-        "name": "",
+        "name": "Darth Vader",
         "photo": "",
         "scores": [
             "4",
@@ -31,7 +31,7 @@ var friends = [{
         ]
     },
     {
-        "name": "",
+        "name": "Michael Myers",
         "photo": "",
         "scores": [
             "1",
